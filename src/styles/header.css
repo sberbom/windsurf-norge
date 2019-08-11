@@ -3,5 +3,5 @@
     background-size: cover;
     background-position: center;
     color: white;
-    text-shadow: 1px 1px black;  
+    border-bottom: 3px gray solid;
 }

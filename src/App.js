@@ -1,19 +1,33 @@
 import React from 'react';
 import './App.css';
 import SBNavbar from './components/navbar';
-import Header from './components/header';
-import SpotList from './components/spotList'
+import Home from './views/home'
+import Footer from './components/footer';
+import ViewSpots from './views/viewSpots';
 
-function App() {
-  return (
-    <div className="App">
-      <SBNavbar/>
-      <div className="content">
-        <Header/>
-        <SpotList/>
+class App extends React.Component {
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      route: "home"
+    }
+  }
+
+  route =  (string) => {
+    this.setState({route: string});
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <SBNavbar route={this.route}/>
+        {this.state.route === "home" && <Home/>}
+        {this.state.route === "viewSpots" && <ViewSpots/>}
+        <Footer/>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

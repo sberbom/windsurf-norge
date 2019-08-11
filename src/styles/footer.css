@@ -1,0 +1,9 @@
+.footer {
+    background-color: black;
+    color: white;
+    display: flex;
+}
+
+.footer > section {
+    padding: 0 10px;
+}

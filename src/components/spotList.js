@@ -2,19 +2,16 @@ import React from 'react'
 import Card from './card'
 import '../styles/spotList.css'
 
-class SpotList extends React.Component {
-    render(){
-        return(
-            <div className="spotList">
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-            </div>
-        );
+const SpotList = (props) => {
+    let cards = [];
+    for( let i = 0; i<props.number; i++){
+        cards.push(<Card key={i}/>);
     }
+    return(
+        <div className="spotList">
+            {cards}
+        </div>
+    );
 }
 
 export default SpotList;

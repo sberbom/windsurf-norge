@@ -1,5 +1,5 @@
 .spotList{
-    margin: 40px;
+    margin: 40px 0;
     display:grid;
     grid-gap: 100px;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -8,10 +8,10 @@
 
 @media only screen and (min-width: 1350px){
     .spotList{
-        margin: 40px;
+        margin: 40px 0;
         display:grid;
         grid-gap: 100px;
-        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         justify-items: center;
     }
 }
