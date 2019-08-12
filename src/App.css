@@ -16,5 +16,9 @@
 
 .mainContent {
   margin: 0 5%;
-  padding-bottom: 10px;
+  padding-bottom: 80px;
+}
+
+.pointer {
+  cursor: pointer;
 }
