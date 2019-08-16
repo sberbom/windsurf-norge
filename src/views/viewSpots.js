@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from '../components/title';
-import SpotList from '../components/spotList'
-import Searchbar from '../components/searchbar'
+import SpotList from '../containers/spotList';
+import Searchbar from '../components/searchbar';
 
 const ViewSpots = () => {
     return(

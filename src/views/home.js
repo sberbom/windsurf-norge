@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/header';
-import SpotList from '../components/spotList'
-import Map from '../components/map';
+import SpotList from '../containers/spotList'
+import Map from '../containers/map';
 import Title from '../components/title';
 
 const Home = () => {

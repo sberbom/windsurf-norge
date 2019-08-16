@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from '../components/title';
-import Map from '../components/map';
+import Map from '../containers/map';
 
 
 const MapView = (props) => {

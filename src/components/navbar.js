@@ -12,7 +12,7 @@ const SBNavbar = (props) =>  {
                 <Nav className="mr-auto">
                     <Nav.Link onClick={() => props.route("viewSpots")}>Alle spots</Nav.Link>
                     <Nav.Link onClick={() => props.route("mapView")}>Kart</Nav.Link>
-                    <Nav.Link onClick={() => props.route("addSpots")}>Legg til spot</Nav.Link>
+                    <Nav.Link onClick={() => props.route("addSpot")}>Legg til spot</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

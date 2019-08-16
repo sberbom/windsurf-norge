@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
   });
 
-const SpotList = () => {
+const SpotList = (props) => {
 
     const classes = useStyles();
 
@@ -29,10 +29,8 @@ const SpotList = () => {
                 title="Contemplative Reptile"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">Spot Name</Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                A longer text with a short version of the spot. Most important things to know about the spot
-                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">{props.spotName}</Typography>
+                <Typography variant="body2" color="textSecondary" component="p">{props.description}</Typography>
             </CardContent>
             </CardActionArea>
         </Card>

@@ -5,25 +5,33 @@ import Card from './card'
 
 const GoogleMaps = compose(
     withProps({
-      googleMapURL: "https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places",
-      loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `80vh` }} />,
-      mapElement: <div style={{ height: `100%` }} />,
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places",
+        loadingElement: <div style={{ height: `100%` }} />,
+        containerElement: <div style={{ height: `80vh` }} />,
+        mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
     withGoogleMap
   )((props) =>
     <GoogleMap
-      defaultZoom={6}
-      defaultCenter={{ lat: 61.2383973, lng: 11.2987633 }}
+        defaultZoom={6}
+        defaultCenter={{ lat: 61.2383973, lng: 11.2987633 }}
+        onClick={() => props.onMarkerClick(null)}
     >
-      <Marker position={{ lat: 59.887542, lng: 10.633064 }} onClick={props.onMarkerClick}>
-          {props.isOpen && 
-            <InfoWindow onCloseClick={props.onCloseClick}> 
-                <Card/>
-            </InfoWindow>
-        }
-      </Marker>
+        {props.spots.map((spot, index) => {
+            return(
+                <Marker key={index} data-arg={index} position={{lat: Number(spot.latlng.lat), lng: Number(spot.latlng.lng)}} onClick={() => props.onMarkerClick(index)}>
+                    {props.isOpen === index && 
+                        <InfoWindow onCloseClick={props.onCloseClick}> 
+                            <Card
+                                spotName={spot.name}
+                                description={spot.description}
+                            />
+                        </InfoWindow>
+                    }
+                </Marker>
+            );
+        })}
     </GoogleMap>
   );
 
