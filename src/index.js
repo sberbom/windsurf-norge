@@ -4,16 +4,16 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
-import { createLogger} from 'redux-logger';
+// import { createLogger} from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
-import { requestSpots } from './state/reducers'
+import { requestSpots, getAddress } from './state/reducers'
 import 'typeface-roboto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 
-const logger= createLogger();
-const rootReducer = combineReducers({requestSpots});
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
+// const logger= createLogger();
+const rootReducer = combineReducers({requestSpots, getAddress});
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

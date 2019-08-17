@@ -34,7 +34,8 @@ class AddSpotForm extends React.Component {
                         <InputGroup.Text id="address">Adresse</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                        placeholder="Adresse"
+                        value={this.props.address}
+                        readOnly={true}
                         aria-label="Adresse"
                         aria-describedby="basic-addon1"
                         />
