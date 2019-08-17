@@ -15,7 +15,7 @@ class Header extends React.Component {
                         alt="First slide"
                         />
                         <Carousel.Caption>
-                        <h3>Velkommen til Windsurf Norge</h3>
+                        <h3>Windsurf Norge</h3>
                         <p>På denne siden kan du finne informasjon om steder å windsurfe i Norge</p>
                         </Carousel.Caption>
                     </Carousel.Item>

@@ -44,6 +44,10 @@ class SBNavbar extends React.Component  {
                         <Nav.Link onClick={() => this.props.route("mapView")}>Kart</Nav.Link>
                         <Nav.Link onClick={() => this.props.route("addSpot")}>Legg til spot</Nav.Link>
                     </Nav>
+                    <Nav>
+                        <Nav.Link onClick={() => this.props.route("loggin")}>Logg inn</Nav.Link>
+                        <Nav.Link onClick={() => this.props.route("register ")}>Registrer</Nav.Link>
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         );

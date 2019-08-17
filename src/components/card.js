@@ -21,7 +21,7 @@ const SpotList = (props) => {
     const classes = useStyles();
 
     return(
-        <Card className={classes.card+" card"}>
+        <Card className={classes.card+" sb-card"}>
             <CardActionArea>
             <CardMedia
                 className={classes.media}
