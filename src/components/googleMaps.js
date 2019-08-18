@@ -1,7 +1,8 @@
 import React from 'react';
-import { compose, withProps } from "recompose"
+import { compose, withProps, withHandlers } from "recompose"
 import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import Card from './card'
+import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
 import {googleAPI} from '../env.js'; 
 
 const GoogleMaps = compose(
@@ -11,6 +12,11 @@ const GoogleMaps = compose(
         containerElement: <div style={{ height: `80vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),
+    withHandlers({
+        onMarkerClustererClick: () => (markerClusterer) => {
+            // action on cluster click
+        },
+      }),
     withScriptjs,
     withGoogleMap
   )((props) =>
@@ -26,20 +32,29 @@ const GoogleMaps = compose(
                 ref={props.onMarkerMounted}
                 onDragEnd={props.onDragEnd}/>
         :
-        props.spots.map((spot, index) => {
-            return(
-                <Marker key={index} position={{lat: Number(spot.latlng.lat), lng: Number(spot.latlng.lng)}} onClick={() => props.onMarkerClick(index)}>
-                    {props.isOpen === index && 
-                        <InfoWindow onCloseClick={props.onCloseClick}> 
-                            <Card
-                                spotName={spot.name}
-                                description={spot.description}
-                            />
-                        </InfoWindow>
-                    }
-                </Marker>
-            );
-                })}
+        <MarkerClusterer
+            onClick={props.onMarkerClustererClick}
+            averageCenter
+            enableRetinaIcons
+            gridSize={100}
+        >
+            {props.spots.map((spot, index) => {
+                return(
+                    <Marker key={index} position={{lat: Number(spot.latlng.lat), lng: Number(spot.latlng.lng)}} onClick={() => props.onMarkerClick(index)}>
+                        {props.isOpen === index && 
+                            <InfoWindow onCloseClick={props.onCloseClick}> 
+                                <Card
+                                    spotName={spot.name}
+                                    description={spot.description}
+                                />
+                            </InfoWindow>
+                        }
+                    </Marker>
+                    );
+                })
+            }
+        </MarkerClusterer>
+        }
     </GoogleMap>
   );
 
