@@ -3,12 +3,23 @@ import Card from './card'
 import '../styles/spotList.css'
 
 const SpotList = (props) => {
+
+    let filteredSpots = null
+    
+    if(props.searchFilter !== null || props.searchFilter !== undefined){
+        filteredSpots = props.spots.filter(spot => { 
+            return spot.name.toLowerCase().includes(props.searchFilter.toLowerCase());
+        })
+    }
+    else { filteredSpots = props.spots }
+    
+
     let numberOfCards = 0
-    props.number > props.spots.length ? numberOfCards = props.spots.length : numberOfCards = props.number;
+    props.number > filteredSpots.length ? numberOfCards = filteredSpots.length : numberOfCards = props.number;
     
     let cards = [];
     for( let i = 0; i<numberOfCards; i++){
-        cards.push(<Card key={i} spotName={props.spots[i].name} description={props.spots[i].description}/>);
+        cards.push(<Card key={i} spotName={filteredSpots[i].name} description={filteredSpots[i].description}/>);
     }
     
     return(
