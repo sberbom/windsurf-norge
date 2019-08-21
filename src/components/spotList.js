@@ -6,8 +6,9 @@ const SpotList = (props) => {
 
     let filteredSpots = null
     
-    if(props.searchFilter !== null || props.searchFilter !== undefined){
+    if(props.searchFilter !== null && props.searchFilter !== undefined) {
         filteredSpots = props.spots.filter(spot => { 
+            console.log("spot", spot.name);
             return spot.name.toLowerCase().includes(props.searchFilter.toLowerCase());
         })
     }
