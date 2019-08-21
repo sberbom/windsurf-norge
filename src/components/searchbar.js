@@ -11,6 +11,7 @@ const Searchbar = (props) => {
                     <InputGroup.Text id="basic-addon1">Søk</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
+                    onChange={props.onSearchfilterChange}
                     placeholder="Søk"
                     aria-label="Søk"
                     aria-describedby="basic-addon1"

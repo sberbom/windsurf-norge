@@ -1,6 +1,6 @@
 import Map from '../components/map';
 import { connect } from 'react-redux';
-import {requestSpots} from '../state/actions';
+import {requestSpots, getAddress} from '../state/actions';
     
 function mapStateToProps(state) {
     const props = {}
@@ -12,6 +12,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
       onRequestSpots: () => dispatch(requestSpots()),
+      onGetAddress: (lat, lng)  => dispatch(getAddress(lat, lng)),
     }
   }
 
