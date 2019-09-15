@@ -1,38 +1,36 @@
 import React from 'react';
 import './App.css';
-import SBNavbar from './components/navbar';
+import SBNavbar from './containers/navbar';
 import Home from './views/home'
 import Footer from './components/footer';
 import ViewSpots from './views/viewSpots';
 import MapView from './views/mapView';
 import AddSpot from './views/addSpot';
+import SpotView from './views/spotView'
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  const props = {}
+  props.route = state.changeRoute.currentRoute;
+  return props;
+}
 
 class App extends React.Component {
-  
-  constructor(props){
-    super(props);
-    this.state = {
-      route: "home"
-    }
-  }
-
-  route =  (string) => {
-    this.setState({route: string});
-    window.scrollTo(0, 0);
-  }
 
   render(){
+    const route = this.props.route;
     return (
       <div className="App">
         <SBNavbar route={this.route}/>
-        {this.state.route === "home" && <Home/>}
-        {this.state.route === "viewSpots" && <ViewSpots/>}
-        {this.state.route === 'mapView' && <MapView/>}
-        {this.state.route === 'addSpot' && <AddSpot/>}
+        {route === "home" && <Home/>}
+        {route === 'mapView' && <MapView/>}
+        {route === "viewSpots" && <ViewSpots/>}
+        {route === 'addSpot' && <AddSpot/>}
+        {route === 'spot' && <SpotView/>}
         <Footer/>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps, null)(App);

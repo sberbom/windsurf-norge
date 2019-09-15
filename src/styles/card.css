@@ -1,3 +1,4 @@
-.sb-card {
-    width: 100%;
+.sb-card:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }

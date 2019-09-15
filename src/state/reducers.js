@@ -5,6 +5,7 @@ import {
     GET_ADDRESS, 
     GET_LNG,
     GET_LAT,
+    CHANGE_ROUTE,
 } from './constants';
 
 const initialStateSpots = {
@@ -41,6 +42,20 @@ export const getAddress = (state= intialAddress, action={}) => {
         case GET_LNG:
             return Object.assign({}, state, {lng: action.payload})
         default:
+            return state
+    }
+}
+
+const initialState = {
+    currentRoute: 'home'
+}
+
+export const changeRoute = (state=initialState, action={}) => {
+    switch(action.type){
+        case CHANGE_ROUTE:
+            window.scrollTo(0,0)
+            return Object.assign({}, state, {currentRoute: action.paylode})
+        default: 
             return state
     }
 }

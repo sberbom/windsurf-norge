@@ -1,33 +1,47 @@
 import React from 'react' 
-import Card from './card'
+import SpotCard from '../components/card'
 import '../styles/spotList.css'
 
-const SpotList = (props) => {
+class SpotList extends React.Component {
+    
+    render() {
+        let filteredSpots = this.getFilteredSpots();
+        filteredSpots = this.getSortetSpots(filteredSpots);
 
-    let filteredSpots = null
-    
-    if(props.searchFilter !== null && props.searchFilter !== undefined) {
-        filteredSpots = props.spots.filter(spot => { 
-            console.log("spot", spot.name);
-            return spot.name.toLowerCase().includes(props.searchFilter.toLowerCase());
-        })
-    }
-    else { filteredSpots = props.spots }
-    
+        const {number} = this.props;
 
-    let numberOfCards = 0
-    props.number > filteredSpots.length ? numberOfCards = filteredSpots.length : numberOfCards = props.number;
-    
-    let cards = [];
-    for( let i = 0; i<numberOfCards; i++){
-        cards.push(<Card key={i} spotName={filteredSpots[i].name} description={filteredSpots[i].description}/>);
+        let numberOfCards = 0
+        number > filteredSpots.length ? numberOfCards = filteredSpots.length : numberOfCards = number;
+
+        let cards = [];
+        for( let i = 0; i<numberOfCards; i++){
+            cards.push(<SpotCard key={i} spot={filteredSpots[i]}/>);
+        }
+
+        return(
+            <div className="spotList">
+                {cards}
+            </div>
+        );
     }
-    
-    return(
-        <div className="spotList">
-            {cards}
-        </div>
-    );
+
+    getFilteredSpots = () => {
+        const {searchFilter, spots} = this.props
+        if(searchFilter !== null && searchFilter !== undefined) {
+            const filteredSpots = spots.filter(spot => { 
+                console.log("spot", spot.name);
+                return spot.name.toLowerCase().includes(searchFilter.toLowerCase());
+            })
+            return filteredSpots;
+        }
+        else { 
+            return spots
+        }
+    }
+
+    getSortetSpots = (spots) => {
+        return spots.sort((a, b) => (a.name>b.name) ? 1 : -1);
+    }
 }
 
 export default SpotList;

@@ -23,10 +23,10 @@ const Searchbar = (props) => {
                 Sorter etter
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Alfabetisk</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Mest populær</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Nyests</Dropdown.Item>
+            <Dropdown.Menu onChange={props.onSortByChange}>
+                <Dropdown.Item onClick={() => props.onSortByChange("alfabetic")} href="#/">Alfabetisk</Dropdown.Item>
+                <Dropdown.Item onClick={() => props.onSortByChange("mostPopular")} href="#/">Mest populær</Dropdown.Item>
+                <Dropdown.Item onClick={() => props.onSortByChange("mostRecent")} href="#/">Nyests</Dropdown.Item>
             </Dropdown.Menu>
             </Dropdown>
         </div>

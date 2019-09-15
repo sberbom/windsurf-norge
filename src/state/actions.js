@@ -5,9 +5,12 @@ import {
     GET_ADDRESS, 
     GET_LNG,
     GET_LAT,
+    CHANGE_ROUTE,
 } from './constants';
 import Geocode from "react-geocode";
 import {googleAPI} from '../env';
+
+export const setRoute = (text) => ({type:CHANGE_ROUTE, paylode:text})
 
 export const requestSpots = () => (dispatch) => {
     dispatch({type:REQUEST_SPOTS_PENDING})

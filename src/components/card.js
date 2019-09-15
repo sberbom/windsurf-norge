@@ -1,40 +1,36 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import Spot from './spot'
+import { Card } from 'react-bootstrap';
 import '../styles/card.css'
 
-const useStyles = makeStyles({
-    card: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 140,
-    },
-  });
 
-const SpotList = (props) => {
+class SpotCard extends React.Component {
 
-    const classes = useStyles();
+    constructor(props) {
+      super(props)
+      this.state = {
+        showSpotModal: false,
+      }
+    }
 
-    return(
-        <Card className={classes.card+" sb-card"}>
-            <CardActionArea>
-            <CardMedia
-                className={classes.media}
-                image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                title="Contemplative Reptile"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">{props.spotName}</Typography>
-                <Typography variant="body2" color="textSecondary" component="p">{props.description}</Typography>
-            </CardContent>
-            </CardActionArea>
-        </Card>
-    );
+    onCardClick = () => {
+      this.setState({showSpotModal: !this.state.showSpotModal});
+    }
+
+    render(){
+      return(
+        <div className={"sb-card"}>
+          <Card style={{ width: '18rem' }} onClick={() => this.onCardClick()}>
+            <Card.Img variant="top" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
+            <Card.Body>
+              <Card.Title>{this.props.spot.name}</Card.Title>
+              <Card.Text>{this.props.spot.description}</Card.Text>
+            </Card.Body>
+          </Card>
+          {this.state.showSpotModal && <Spot show={true} onHide={() => this.onCardClick()} spot={this.props.spot}/>}
+        </div>
+      );
+    }
 }
 
-export default SpotList;
+export default SpotCard;

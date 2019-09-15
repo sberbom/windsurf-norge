@@ -5,3 +5,5 @@ export const REQUEST_SPOTS_FAILED ='REQUEST_SPOTS_FAILED'
 export const GET_ADDRESS = 'GET_ADDRESS'
 export const GET_LNG = "GET_LNG"
 export const GET_LAT = "GET_LAT"
+
+export const CHANGE_ROUTE = 'CHANGE_ROUTE'

@@ -8,7 +8,8 @@ class ViewSpots extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            searchFilter: null
+            searchFilter: null,
+            sortBy: "mostPopular"
         };
     }
 
@@ -16,13 +17,17 @@ class ViewSpots extends React.Component {
         filter.target.value === "" ? this.setState({searchFilter: null}) : this.setState({searchFilter: filter.target.value});
     }
 
+    onSortByChange = (value) => {
+        this.setState({sortBy: value});
+    }
+
     render() {
         return(
             <div className="content">
                 <div className="mainContent">
                     <Title title={"Spots"}/>
-                    <Searchbar onSearchfilterChange={this.onSearchfilterChange}/>
-                    <SpotList number={20} searchFilter={this.state.searchFilter} />
+                    <Searchbar onSearchfilterChange={this.onSearchfilterChange} onSortByChange={this.onSortByChange}/>
+                    <SpotList number={20} searchFilter={this.state.searchFilter} sortBy={this.state.sortBy} />
                 </div>
             </div>
         );
