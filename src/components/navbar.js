@@ -3,6 +3,7 @@ import '../styles/navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import LogIn from '../containers/logIn';
+import Register from '../containers/register';
 
 class SBNavbar extends React.Component  {
     constructor(props) {
@@ -11,6 +12,7 @@ class SBNavbar extends React.Component  {
             prevScrollpos: window.pageYOffset,
             visible: true,
             showLogin: false,
+            showRegister: false
         };
     }
     
@@ -37,6 +39,10 @@ class SBNavbar extends React.Component  {
     onLoginClick = () => {
         this.setState({showLogin: !this.state.showLogin})
     }
+
+    onRegisterClick = () => {
+        this.setState({showRegister: !this.state.showRegister})
+    }
     
 
     render() {
@@ -54,7 +60,7 @@ class SBNavbar extends React.Component  {
                         {this.props.user === null ? 
                         <Nav>
                             <Nav.Link onClick={() => this.onLoginClick()}>Logg inn</Nav.Link>
-                            <Nav.Link onClick={() => this.props.setRoute("register ")}>Registrer</Nav.Link>
+                            <Nav.Link onClick={() => this.onRegisterClick()}>Registrer</Nav.Link>
                         </Nav>
                         :
                         <Nav>
@@ -65,6 +71,7 @@ class SBNavbar extends React.Component  {
                     </Navbar.Collapse>
                 </Navbar>}
                 {this.state.showLogin && <LogIn handleClose={() => this.onLoginClick()}/>}
+                {this.state.showRegister && <Register handleClose={() => this.onRegisterClick()}/>}
             </div>
         );
     }
