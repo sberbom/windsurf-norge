@@ -57,7 +57,7 @@ class Spot extends React.Component {
                             />
                         </Carousel.Item>
                         <Carousel.Item>
-                            <Map/>
+                            <Map oneSpot={true} spot={this.props.spot}/>
                         </Carousel.Item>
                     </Carousel>
                         <p>{this.state.address}</p>

@@ -39,6 +39,8 @@ class Map extends React.Component {
         isOpen={this.state.isOpen}
         spots = {this.props.spots}
         addSpot = {this.props.addSpot}
+        oneSpot = {this.props.oneSpot}
+        spot = {this.props.spot}
         onMarkerMounted = {this.onAddDraggableMarker}
         onDragEnd = {this.onPositionChanged}
       />

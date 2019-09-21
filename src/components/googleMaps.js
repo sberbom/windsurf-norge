@@ -25,7 +25,10 @@ const GoogleMaps = compose(
         defaultCenter={{ lat: 61.2383973, lng: 11.2987633 }}
         onClick={() => props.onMarkerClick(null)}
     >
-        {props.addSpot ? 
+        {props.oneSpot ? 
+            <Marker position={{lat: Number(props.spot.latlng.lat), lng: Number(props.spot.latlng.lng)}}/>
+        :
+        props.addSpot ? 
             <Marker 
                 position={{lat: 61.2383973, lng: 11.2987633}} 
                 draggable={true} 
@@ -44,8 +47,7 @@ const GoogleMaps = compose(
                         {props.isOpen === index && 
                             <InfoWindow onCloseClick={props.onCloseClick}> 
                                 <Card
-                                    spotName={spot.name}
-                                    description={spot.description}
+                                    spot={spot}
                                 />
                             </InfoWindow>
                         }

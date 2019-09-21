@@ -1,4 +1,15 @@
+.sb-card {
+    transition: all .2s ease-in-out;
+}
+
 .sb-card:hover {
     cursor: pointer;
+}
+
+.spotList > .sb-card:hover {
     transform: scale(1.1);
+}
+
+.card {
+    height: 100%;
 }
