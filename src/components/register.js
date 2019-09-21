@@ -8,10 +8,13 @@ class Register extends React.Component {
         this.username = React.createRef();
         this.password = React.createRef();
         this.email = React.createRef();
+        this.state = {
+            error: false,
+            errorMessage: null
+        }
     }
 
     onRegister = () => {
-        console.log(this.username.current.value, this.password.current.value)
         fetch('http://localhost:3300/register', {
             method: 'post',
             headers: {'Content-Type' : 'application/json'},
@@ -23,7 +26,13 @@ class Register extends React.Component {
         })
         .then(response => response.json())
         .then(user => {
-            console.log("ok");
+            if(user.username === undefined){
+                this.setState({error: true, errorMessage: user})
+            }
+            else {
+                this.props.changeUser(user);
+                this.props.handleClose();
+            }
         })
     }
 
@@ -35,13 +44,14 @@ class Register extends React.Component {
                         <Modal.Title>Register</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        {this.state.error && <p>{this.state.errorMessage}</p>}
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">E-post</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
                             placeholder="E-post"
-                            aria-label="Username"
+                            aria-label="E-post"
                             aria-describedby="basic-addon1"
                             ref={this.email}
                             />
@@ -52,7 +62,7 @@ class Register extends React.Component {
                             </InputGroup.Prepend>
                             <FormControl
                             placeholder="Brukernavn"
-                            aria-label="Username"
+                            aria-label="Brukernavn"
                             aria-describedby="basic-addon1"
                             ref={this.username}
                             />
@@ -63,7 +73,7 @@ class Register extends React.Component {
                             </InputGroup.Prepend>
                             <FormControl
                             placeholder="Passord"
-                            aria-label="Username"
+                            aria-label="Passord"
                             aria-describedby="basic-addon1"
                             type="password"
                             ref={this.password}

@@ -7,10 +7,13 @@ class LogIn extends React.Component {
         super(props);
         this.username = React.createRef();
         this.password = React.createRef();
+        this.state = {
+            error: false,
+            errorMessage: null,
+        }
     }
 
     onLogIn = () => {
-        console.log(this.username.current.value, this.password.current.value)
         fetch('http://localhost:3300/login', {
             method: 'post',
             headers: {'Content-Type' : 'application/json'},
@@ -26,6 +29,9 @@ class LogIn extends React.Component {
                 this.props.changeUser(user);
                 this.props.handleClose();
             }
+            else{
+                this.setState({error:true, errorMessage: user});
+            }
         })
     }
 
@@ -37,13 +43,14 @@ class LogIn extends React.Component {
                         <Modal.Title>Logg inn</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        {this.state.error && <p>{this.state.errorMessage}</p>}
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Brukernavn</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
                             placeholder="E-post"
-                            aria-label="Username"
+                            aria-label="Brukernavn"
                             aria-describedby="basic-addon1"
                             ref={this.username}
                             />

@@ -3,7 +3,7 @@ import '../styles/navbar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import LogIn from '../containers/logIn';
-import Register from './register';
+import Register from '../containers/register';
 
 class SBNavbar extends React.Component  {
     constructor(props) {
