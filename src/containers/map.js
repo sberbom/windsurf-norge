@@ -5,7 +5,6 @@ import {requestSpots, getAddress} from '../state/actions';
 function mapStateToProps(state) {
     const props = {}
     props.spots = state.requestSpots.spots;
-    props.test = "test;"
     return props;
 }
 

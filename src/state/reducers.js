@@ -6,6 +6,7 @@ import {
     GET_LNG,
     GET_LAT,
     CHANGE_ROUTE,
+    CHANGE_USER
 } from './constants';
 
 const initialStateSpots = {
@@ -57,5 +58,18 @@ export const changeRoute = (state=initialState, action={}) => {
             return Object.assign({}, state, {currentRoute: action.paylode})
         default: 
             return state
+    }
+}
+
+const intialUser = {
+    user: null
+}
+
+export const changeUser = (state = intialUser, action={}) => {
+    switch(action.type){
+        case CHANGE_USER:
+            return Object.assign({}, state, {user: action.payload})
+        default:
+            return state;
     }
 }
