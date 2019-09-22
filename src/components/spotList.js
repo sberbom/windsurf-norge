@@ -1,5 +1,5 @@
 import React from 'react' 
-import SpotCard from '../components/card'
+import SpotCard from '../containers/card'
 import '../styles/spotList.css'
 
 class SpotList extends React.Component {
@@ -29,7 +29,6 @@ class SpotList extends React.Component {
         const {searchFilter, spots} = this.props
         if(searchFilter !== null && searchFilter !== undefined) {
             const filteredSpots = spots.filter(spot => { 
-                console.log("spot", spot.name);
                 return spot.name.toLowerCase().includes(searchFilter.toLowerCase());
             })
             return filteredSpots;

@@ -11,8 +11,8 @@ class Map extends React.Component {
     }
   }
 
-  handleMarkerClick = (index) => {
-    this.setState({ isOpen: index })
+  handleMarkerClick = (name) => {
+    this.setState({ isOpen: name })
   }
 
   componentDidMount = () => {
@@ -31,6 +31,8 @@ class Map extends React.Component {
   }
 
   render() {
+    const center = this.props.center ? this.props.center : { lat: 61.2383973, lng: 11.2987633 };
+    const zoom = this.props.zoom ? this.props.zoom : 6;
     return (
       <GoogleMaps
         isMarkerShown={true}
@@ -43,6 +45,8 @@ class Map extends React.Component {
         spot = {this.props.spot}
         onMarkerMounted = {this.onAddDraggableMarker}
         onDragEnd = {this.onPositionChanged}
+        center = {center}
+        zoom = {zoom}
       />
     )
   }

@@ -1,16 +1,54 @@
 .spot {
-    margin: 56px 5%;
+    font-family: "-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    color: white;
 }
 
 .spotCarousel {
     border-radius: 10px;
     overflow: hidden;
+    height: 50vh;
 }
 
-.spotDescription {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: rgba(250,250,250,0.7);
+.spotCarouselContainer {
+    width: 65%;
+    margin-right: 5px;
+}
+
+.spotCardContainer {
+    width: 35%;
+    margin-left: 5px;
+}
+
+.spotContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spotJumbotron {
+    height: 70vh;
+    text-shadow: 2px 2px gray;   
+}
+
+.spotJumbotron > h1 {
+    font-size: 4.5rem;
+}
+
+.spotCard {
+    color: black;
+    height: 50vh;
+    overflow-y: hidden;
+}
+
+.spotCardContainer > .card {
     border-radius: 10px;
-    font-family: "-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.spotCarousel > .carousel-inner {
+    height: 50vh;
+    background: rgba(250,250,250,0.2)
+}
+
+.spotCarousel > .carousel-inner > .carousel-item > .mapContainer {
+    height: 50vh !important;
 }
