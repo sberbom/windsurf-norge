@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
     
 function mapStateToProps(state) {
     const props = {}
-    props.spots = state.requestSpots.spots[0];
+    props.spot = state.activeSpot.activeSpot;
     return props;
 }
 

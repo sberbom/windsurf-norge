@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 function mapStateToProps(state) {
   const props = {}
   props.route = state.changeRoute.currentRoute;
+  props.activeSpot = state.activeSpot.activeSpot;
   return props;
 }
 

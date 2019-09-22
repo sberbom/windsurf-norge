@@ -6,13 +6,14 @@ import {
     GET_LNG,
     GET_LAT,
     CHANGE_ROUTE,
+    CHANGE_ACTIVE_SPOT,
     CHANGE_USER
 } from './constants';
 
 const initialStateSpots = {
     isPending: false,
     spots: [],
-    error: ""
+    error: "",
 }
 
 export const requestSpots= (state=initialStateSpots, action={}) => {
@@ -23,6 +24,19 @@ export const requestSpots= (state=initialStateSpots, action={}) => {
             return Object.assign({}, state, {spots:action.payload, isPending:false});
         case REQUEST_SPOTS_FAILED:
             return Object.assign({}, state, {error: action.payload, isPending: false});
+        default:
+            return state;
+    }
+}
+
+const intialActiveSpot = {
+    activeSpot: null
+}
+
+export const activeSpot = (state = intialActiveSpot, action={}) => {
+    switch(action.type){
+        case CHANGE_ACTIVE_SPOT:
+            return Object.assign({}, state, {activeSpot: action.paylode});
         default:
             return state;
     }
