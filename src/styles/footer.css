@@ -1,9 +1,18 @@
 .footer {
-    background-color: black;
-    color: white;
+    background-color: #ddd;
+    color: black;
     display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .footer > section {
     padding: 0 10px;
+    width: 33%;
+}
+
+.footerlist {
+    list-style-type: none;
 }
