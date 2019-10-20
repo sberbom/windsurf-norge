@@ -1,8 +1,21 @@
 .title {
-    padding: 10px;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 4.5rem;
-    font-weight: 300;
-    line-height: 1.2;
+    margin: 5vh;
+    line-height: 140%;
+    text-transform: uppercase;
     color: white;
+    font-weight: 400;
+    font-size: 3.5em;
+}
+
+h1 {
+    font-size: 4rem;
+}
+h1::before,
+h1::after {
+    display: inline-block;
+    content: "";
+    border-top: .3rem solid white;
+    width: 30vh;
+    margin: 0 1rem;
+    transform: translateY(-1rem);
 }

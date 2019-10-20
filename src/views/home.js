@@ -9,10 +9,10 @@ const Home = () => {
         <div className="content">
             <Header/>
             <div className="mainContent">
-                <Title title={"Kart"}/>
-                <Map/>
                 <Title title={"Populære spots"}/>
                 <SpotList number={6}/>
+                <Title title={"Kart"}/>
+                <Map/>
             </div>
         </div>
     );

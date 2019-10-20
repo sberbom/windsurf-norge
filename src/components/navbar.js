@@ -16,13 +16,13 @@ class SBNavbar extends React.Component  {
         };
     }
     
-    componentDidMount() {
-        window.addEventListener("scroll", this.handleScroll);
-    }
+    // componentDidMount() {
+    //     window.addEventListener("scroll", this.handleScroll);
+    // }
 
-    componentWillUnmount() {
-        window.removeEventListener("scroll", this.handleScroll);
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener("scroll", this.handleScroll);
+    // }
 
     handleScroll = () => {
         const { prevScrollpos } = this.state;
@@ -48,10 +48,18 @@ class SBNavbar extends React.Component  {
     render() {
         return(
             <div>
-                {this.state.visible && <Navbar bg="light" expand="lg" className="fixed-top">
-                    <Navbar.Brand className="pointer" onClick={() => this.props.setRoute("home")}>Windsurf Norge</Navbar.Brand>
+                {this.state.visible && <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top topnav">
+                    <Navbar.Brand className="pointer" onClick={() => this.props.setRoute("home")}>
+                        <img
+                            src="https://image.flaticon.com/icons/svg/80/80839.svg"
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="React Bootstrap logo"
+                        />
+                        Windsurf Norge
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link onClick={() => this.props.setRoute("viewSpots")}>Alle spots</Nav.Link>
                             <Nav.Link onClick={() => this.props.setRoute("mapView")}>Kart</Nav.Link>
@@ -68,7 +76,6 @@ class SBNavbar extends React.Component  {
                             <Nav.Link onClick={() => this.props.changeUser(null)}>Logg ut</Nav.Link>
                         </Nav>
                     }
-                    </Navbar.Collapse>
                 </Navbar>}
                 {this.state.showLogin && <LogIn handleClose={() => this.onLoginClick()}/>}
                 {this.state.showRegister && <Register handleClose={() => this.onRegisterClick()}/>}

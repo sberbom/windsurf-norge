@@ -4,8 +4,8 @@ import '../styles/title.css'
 const Title = (props) => {
     return(
         <div>
-            <hr className={"lineBreaker"}/>
-            <h2 className={"title"}>{props.title}</h2>
+            {/* <hr className={"lineBreaker"}/> */}
+            <h1 className={"title fancy"}><span>{props.title}</span></h1>
         </div>
     );
 }

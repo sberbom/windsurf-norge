@@ -1,10 +1,32 @@
+.header {
+    box-shadow: 0px 10px 10px grey;
+}
+.carousel-inner {
+    width: 100%;
+    max-height: 75vh !important;
+}
+
+.carousel-item {
+    width: 100%;
+    max-height: 75vh !important;
+}
+
+.carousel-item > img {
+    width: 100%;
+    max-height: 75vh !important;
+}
+
 .carousel-caption > h3{
-    font-size: 4.5rem;
-    text-shadow: 2px 2px gray;   
+    line-height: 140%;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 400;
+    font-size: 4.5em;
+    /* text-shadow: 2px 2px gray;    */
 }
 
 .carousel-caption > p {
     font-size: 2rem;
-    text-shadow: 1px 1px gray;   
+    /* text-shadow: 1px 1px gray;    */
 }
 
