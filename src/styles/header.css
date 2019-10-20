@@ -19,14 +19,16 @@
 .carousel-caption > h3{
     line-height: 140%;
     text-transform: uppercase;
-    color: white;
-    font-weight: 400;
+    font-weight: 900;
     font-size: 4.5em;
+    text-shadow: 2px 2px 10px gray;
     /* text-shadow: 2px 2px gray;    */
 }
 
 .carousel-caption > p {
     font-size: 2rem;
+    text-shadow: 2px 2px 10px gray;
+
     /* text-shadow: 1px 1px gray;    */
 }
 

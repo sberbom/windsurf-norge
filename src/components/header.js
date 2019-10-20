@@ -31,10 +31,10 @@ class Header extends React.Component {
                         <p>Under kart-fanen kan du se etter steder å windsurfe i nærheten av deg</p>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    {/* <Carousel.Item>
+                    <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://images.unsplash.com/photo-1552673597-e3cd6747a996?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1647&q=80"
+                        src="https://images.unsplash.com/photo-1530717449302-271006cdc1bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80"
                         alt="Third slide"
                         />
 
@@ -42,7 +42,7 @@ class Header extends React.Component {
                         <h3>Legg til spots</h3>
                         <p>Vil du bidra til siden kan du legge til spots som andre kan finne</p>
                         </Carousel.Caption>
-                    </Carousel.Item> */}
+                    </Carousel.Item>
                     </Carousel>
             </div>
         );
