@@ -1,9 +1,23 @@
 .searchbar{
-    display: flex;
-    justify-content: space-between;
-    margin: 0 10px;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 56px;
+    z-index: 1;
+    padding: 20px 7% 20px 7% !important;
+    margin-bottom: 10vh;
+    align-content: center;
 }
 
-.searchfield{
-    width: 40vh;
+.bg-light{
+    background-color: #e9ecef;
+}
+
+.search {
+    width: 40vh !important;
+}
+
+@media screen and (min-width: 992px){
+    .searchbar{
+        top: 68px;
+    }
 }

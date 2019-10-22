@@ -1,7 +1,8 @@
-.header {
-    box-shadow: 0px 10px 10px grey;
-}
+/* .header {
+    padding-bottom: 10vh;
+} */
 .carousel-inner {
+    box-shadow: 0px 0px 10px #fff;
     width: 100%;
     max-height: 75vh !important;
 }
@@ -22,13 +23,10 @@
     font-weight: 900;
     font-size: 4.5em;
     text-shadow: 2px 2px 10px gray;
-    /* text-shadow: 2px 2px gray;    */
 }
 
 .carousel-caption > p {
     font-size: 2rem;
     text-shadow: 2px 2px 10px gray;
-
-    /* text-shadow: 1px 1px gray;    */
 }
 

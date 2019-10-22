@@ -60,6 +60,7 @@ class SBNavbar extends React.Component  {
                         Windsurf Norge
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link onClick={() => this.props.setRoute("viewSpots")}>Alle spots</Nav.Link>
                             <Nav.Link onClick={() => this.props.setRoute("mapView")}>Kart</Nav.Link>
@@ -76,6 +77,7 @@ class SBNavbar extends React.Component  {
                             <Nav.Link onClick={() => this.props.changeUser(null)}>Logg ut</Nav.Link>
                         </Nav>
                     }
+                    </Navbar.Collapse>
                 </Navbar>}
                 {this.state.showLogin && <LogIn handleClose={() => this.onLoginClick()}/>}
                 {this.state.showRegister && <Register handleClose={() => this.onRegisterClick()}/>}

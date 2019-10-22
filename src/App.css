@@ -9,7 +9,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   font-size: 100%;
-  overflow-y: hidden;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,8 +17,7 @@
 
 .content{
   margin-top: 56px;
-  background-color: rgba(150, 150, 150, 0.8 );
-  padding-bottom: 0;
+  background-color: rgba(150, 150, 150, 0.2 );
 }
 
 /* .mainContent {
