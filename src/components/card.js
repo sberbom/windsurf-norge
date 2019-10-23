@@ -11,10 +11,12 @@ class SpotCard extends React.Component {
     }
 
     render(){
+      console.log(this.props.spot.picture)
+      const pic = this.props.spot.picture ? this.props.spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
       return(
         <div className={"sb-card"}>
           <Card style={{ width: '18rem' }} onClick={() => this.onCardClick()}>
-            <Card.Img variant="top" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
+            <Card.Img variant="top" src={pic} />
             <Card.Body>
               <Card.Title>{this.props.spot.name}</Card.Title>
               <Card.Text>{this.props.spot.description}</Card.Text>

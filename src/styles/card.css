@@ -13,3 +13,8 @@
 .card {
     height: 100%;
 }
+
+.card-img-top{
+    height: 60%;
+    object-fit: cover;
+}
