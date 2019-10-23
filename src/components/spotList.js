@@ -3,7 +3,18 @@ import SpotCard from '../containers/card'
 import '../styles/spotList.css'
 
 class SpotList extends React.Component {
-    
+
+    componentDidMount() {
+        if(this.props.getHeight){
+            this.props.getHeight(this.getHeight);
+        }
+     }
+
+    getHeight = () => {
+        const height = this.divElement.clientHeight;
+        return height;
+    }
+
     render() {
         let filteredSpots = this.getFilteredSpots();
         filteredSpots = this.getSortetSpots(filteredSpots);
@@ -19,7 +30,8 @@ class SpotList extends React.Component {
         }
 
         return(
-            <div className="spotList">
+            <div className="spotList"
+            ref={ (divElement) => this.divElement = divElement}>
                 {cards}
             </div>
         );

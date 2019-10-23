@@ -1,0 +1,22 @@
+.tabbar{
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 56px;
+    z-index: 1;
+    padding: 10px 7% 0 7% !important;
+    margin-bottom: 10vh;
+    align-content: center;
+    background-color: #f8f9fa;
+    justify-content: center;
+}
+
+.tabbar > a {
+    color: rgba(0,0,0,0.5);
+    padding: 14px 1rem 16px 1rem;
+    font-size: 17px;
+}
+
+.nav-item:hover {
+    color: rgba(0,0,0,0.8) !important;
+}
+
