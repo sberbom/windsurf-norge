@@ -13,7 +13,7 @@ const Jumbo = (props) => {
                 <p>{props.undertitle}</p>
                 {props.button && 
                 <p>
-                    <Button variant="primary">{props.buttontext}</Button>
+                    <Button variant="primary" onClick={props.onButtonClick}>{props.buttontext}</Button>
                 </p>
                 }
             </div>

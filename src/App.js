@@ -3,7 +3,7 @@ import './App.css';
 import SBNavbar from './containers/navbar';
 import Home from './views/home'
 import Footer from './components/footer';
-import ViewSpots from './views/viewSpots';
+import ViewSpots from './containers/viewSpots';
 import MapView from './views/mapView';
 import AddSpot from './containers/addSpot';
 import SpotView from './views/spotView'
