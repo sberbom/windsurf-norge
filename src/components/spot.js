@@ -1,10 +1,11 @@
 import React from 'react';
-import { Carousel, Card, Jumbotron, Button } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import Map from '../containers/map';
 import "../styles/spot.css";
 import Geocode from "react-geocode";
 import {googleAPI} from '../env';
 import '../styles/spot.css'
+import Jumbo from './jumbo';
 
 class Spot extends React.Component {
     
@@ -34,14 +35,16 @@ class Spot extends React.Component {
     }
 
     render() {
-        const bgimage = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
+        console.log(this.props.spot)
+        const bgimage = this.props.spot.picture ? this.props.spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
         const {spot} = this.props;  
         return(
             <div className="content spot">
-                <Jumbotron className={"spotJumbotron"} style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}>
-                    <h1>{spot.name}</h1>
-                </Jumbotron>
-                <div className="mainContent spotContent">
+                <Jumbo 
+                        title={spot.name} 
+                        background={bgimage}
+                    />
+                <div className="spotContent">
                     <div className={"spotCarouselContainer"}>
                         <Carousel className={"spotCarousel"}>
                             <Carousel.Item>
@@ -52,27 +55,30 @@ class Spot extends React.Component {
                                     zoom={12}/>
                             </Carousel.Item>
                             <Carousel.Item className={"spotCarouselItem"}>
-                                <img
-                                className="d-block w-100"
-                                src="https://images.unsplash.com/photo-1518810370118-0fde40f8b0f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"
-                                alt="First slide"
+                                <Jumbo
+                                    background={"https://images.unsplash.com/photo-1518810370118-0fde40f8b0f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"}
                                 />
                             </Carousel.Item>
                         </Carousel>
                     </div>
                     <div className={"spotCardContainer"}>
-                        <Card className={"spotCard"}>
-                            <Card.Header>{spot.name}</Card.Header>
-                            <Card.Body>
-                                <p><b>Adresse: </b>{this.state.address}</p>
-                                <p><b>Annkomst: </b>{spot.approach}</p>
-                                <p><b>Beskrivelse: </b>{spot.description}</p>
-                                <p><b>Facebook-side: </b>{spot.facebookPage}</p>
-                            </Card.Body>
-                            <Card.Footer className="text-muted">
-                                <Button variant="primary">Endre spot</Button>
-                            </Card.Footer>
-                        </Card>
+                        <h2>{spot.name}</h2>
+                        <div>
+                            <p className={"infoLabel"}>Adresse: </p>
+                            <p className={"infoField"}>{this.state.address}</p>
+                        </div>
+                        <div>
+                            <p className={"infoLabel"}>Annkomst: </p>
+                            <p className={"infoField"}>{spot.approach}</p>
+                        </div>
+                        <div>
+                            <p className={"infoLabel"}>Beskrivelse: </p>
+                            <p className={"infoField"}>{spot.description}</p>
+                        </div>
+                        <div>
+                            <p className={"infoLabel"}>Facebook-side: </p>
+                            <p className={"infoField"}>{spot.facebookPage}</p>
+                        </div>
                     </div>
                 </div>
             </div>

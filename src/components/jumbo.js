@@ -7,7 +7,9 @@ const Jumbo = (props) => {
     return(
         <Jumbotron fluid style={{backgroundImage: `url(${background})`}}>
             <div className="jumbo-content">
-                <h1>{props.title}</h1>
+                {props.title &&
+                    <h1>{props.title}</h1>
+                }
                 <p>{props.undertitle}</p>
                 {props.button && 
                 <p>
