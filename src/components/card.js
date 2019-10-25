@@ -11,7 +11,6 @@ class SpotCard extends React.Component {
     }
 
     render(){
-      console.log(this.props.spot.picture)
       const pic = this.props.spot.picture ? this.props.spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
       return(
         <div className={"sb-card"}>

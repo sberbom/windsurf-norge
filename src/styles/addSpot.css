@@ -1,0 +1,17 @@
+.addspotContent {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(255,255,255, 0.8);
+    margin: 5% 5%;
+}
+
+.addspotMapContainer {
+    width: 50%;
+}
+
+.bar {
+    height: 78px;
+    background-color: #f8f9fa;
+}

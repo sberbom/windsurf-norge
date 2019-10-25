@@ -3,11 +3,9 @@
     height: 75vh;
     display: flex;
     flex-direction: row;
-    /* background-image: url("https://images.unsplash.com/photo-1515532718572-84a0ef89c998?ixlib=rb-1.2.1&auto=format&fit=crop&w=2695&q=80"); */
-    /* background-image: url("https://images.unsplash.com/photo-1518810370118-0fde40f8b0f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"); */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     align-items: flex-end;
     justify-content: center;
 }

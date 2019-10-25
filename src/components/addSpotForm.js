@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, InputGroup, FormControl, Button} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import '../styles/addSpotForm.css'
 
 class AddSpotForm extends React.Component {
@@ -13,7 +13,7 @@ class AddSpotForm extends React.Component {
             apporach: "",
             description: "",
             authour: "",
-            validateName: true
+            titleInvalid: false
         }
     }
 
@@ -23,6 +23,9 @@ class AddSpotForm extends React.Component {
         }
         else if (this.state.spotName==="") {
             alert("Skriv inn ett navn for spotten");
+        }
+        else if (this.state.titleInvalid){
+            alert("Spotten eksisterer allerde")
         }
         else {
             fetch('http://localhost:3300/add_spot', {
@@ -48,13 +51,14 @@ class AddSpotForm extends React.Component {
 
     titleChange = (e) => {
         const name = e.target.value
-        this.setState({spotName: name, validateName: true});
         for(var i=0; i<this.props.spots.length; i++) {
             if(this.props.spots[i].name.toLowerCase() === name.toLowerCase()){
-                this.setState({validateName: false});
-                break;
+                this.setState({titleInvalid: true});
+                return;
             }
         }
+        this.setState({spotName: name, titleInvalid: false});
+        
     }
 
     facebookChange = (e) => {
@@ -69,61 +73,40 @@ class AddSpotForm extends React.Component {
         this.setState({description: e.target.value});
     }
 
+    onAdressClick = () => {
+        alert("Dra markøren på kartet for å velge spotens posisjon")
+    }
+
     render() {
         return(
             <Form className="addSpotForm">
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="spotName">Spot navn</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        placeholder="Spot navn"
-                        aria-label="Spot navn"
-                        aria-describedby="basic-addon1"
-                        onChange={this.titleChange}
-                    />
-                </InputGroup>
-                {!this.state.validateName && <Form.Text className="">Denne spotten finnes allerede</Form.Text>}
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="address">Adresse</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        value={this.props.address}
-                        readOnly={true}
-                        aria-label="Adresse"
-                        aria-describedby="basic-addon1"
-                    />
-                </InputGroup>
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="facebook-page">Facebook-side</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        placeholder="Facebook-side"
-                        aria-label="Facebook-side"
-                        aria-describedby="basic-addon1"
-                        onChange={this.facebookChange}
-                    />
-                </InputGroup>
-                <Form.Group controlId="approach">
-                    <Form.Label className="input-label">Annkomst</Form.Label>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Spot navn</Form.Label>
+                    <Form.Control type="text" placeholder="Drøbak" onChange={this.titleChange} isInvalid={this.state.titleInvalid} />
+                    <Form.Control.Feedback type="invalid">
+                        Spotten eksisterer
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Adresse</Form.Label>
+                    <Form.Control readOnly value={this.props.address} onClick={this.onAdressClick}/>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Facebook-side</Form.Label>
+                    <Form.Control type="text" placeholder="https://www.facebook.com/groups/352680848154785/" onChange={this.facebookChange} />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Annkomst</Form.Label>
                     <Form.Control as="textarea" rows="3" onChange={this.approachChange}/>
                 </Form.Group>
-                <Form.Group controlId="description">
-                    <Form.Label className="input-label">Beskrivelse</Form.Label>
-                    <Form.Control as="textarea" rows="6" onChange={this.descriptionChange}/>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Beskrivelse</Form.Label>
+                    <Form.Control as="textarea" rows="4" onChange={this.descriptionChange}/>
                 </Form.Group>
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="author">Navn / Kallenavn</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        placeholder="Ditt navn / kallenavn"
-                        aria-label="Dittnavn"
-                        aria-describedby="basic-addon1"
-                    />
-                </InputGroup>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Bruker</Form.Label>
+                    <Form.Control readOnly defaultValue="Bruker" />
+                </Form.Group>
                 <Button variant="primary" onClick={this.onSubmit}> {/*add type="submit"*/}
                     Lagre
                 </Button>
