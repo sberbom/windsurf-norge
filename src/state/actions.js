@@ -18,7 +18,7 @@ export const setActiveSpot = (spot) => ({type:CHANGE_ACTIVE_SPOT, paylode:spot})
 
 export const requestSpots = () => (dispatch) => {
     dispatch({type:REQUEST_SPOTS_PENDING})
-    fetch('http://localhost:3300/spots')
+    fetch('http://13.53.177.6:3300/spots')
         .then(res => res.json())
         .then(data => dispatch({type: REQUEST_SPOTS_SUCCESS, payload: data}))
         .catch(error => dispatch({type: REQUEST_SPOTS_FAILED, payload: error}));
