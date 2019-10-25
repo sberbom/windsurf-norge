@@ -87,23 +87,23 @@ class AddSpotForm extends React.Component {
                         Spotten eksisterer
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput2">
                     <Form.Label>Adresse</Form.Label>
                     <Form.Control readOnly value={this.props.address} onClick={this.onAdressClick}/>
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput3">
                     <Form.Label>Facebook-side</Form.Label>
                     <Form.Control type="text" placeholder="https://www.facebook.com/groups/352680848154785/" onChange={this.facebookChange} />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput4">
                     <Form.Label>Annkomst</Form.Label>
                     <Form.Control as="textarea" rows="3" onChange={this.approachChange}/>
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput5">
                     <Form.Label>Beskrivelse</Form.Label>
                     <Form.Control as="textarea" rows="4" onChange={this.descriptionChange}/>
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput6">
                     <Form.Label>Bruker</Form.Label>
                     <Form.Control readOnly defaultValue="Bruker" />
                 </Form.Group>

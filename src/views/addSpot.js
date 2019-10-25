@@ -2,6 +2,7 @@ import React from 'react'
 import Jumbo from '../components/jumbo';
 import Map from '../containers/map';
 import AddSpotForm from '../containers/addSpotForm';
+import LogIn from '../containers/logIn'
 import '../styles/addSpot.css'
 
 class AddSpot extends React.Component {
@@ -12,6 +13,10 @@ class AddSpot extends React.Component {
             draggableMarker: null,
             position: null
         }
+    }
+
+    onLoginClick = () => {
+        this.props.setRoute("home")
     }
 
     render(){
@@ -29,6 +34,7 @@ class AddSpot extends React.Component {
                     </div>
                     <AddSpotForm position={this.state.position}/>
                 </div>
+                {this.props.user === null && <LogIn handleClose={() => this.onLoginClick()}/>}
             </div>
         );
     }

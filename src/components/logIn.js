@@ -25,7 +25,6 @@ class LogIn extends React.Component {
         .then(response => response.json())
         .then(user => {
             if(user.username===this.username.current.value){
-                console.log("Signed inn");
                 this.props.changeUser(user);
                 this.props.handleClose();
             }
