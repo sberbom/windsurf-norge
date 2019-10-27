@@ -94,9 +94,11 @@ class Spot extends React.Component {
                         </Button>
                     </div>
                 </div>
-                <div className="gallery">
-                    <Photogallery photos={spot.photos} />
-                </div>
+                {this.props.spot.photos && 
+                    <div className="gallery">
+                        <Photogallery photos={spot.photos} />
+                    </div>
+                }
                 {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
                 {this.state.login && <LogIn handleClose={() => this.setState({login:false})}/>}
             </div>
