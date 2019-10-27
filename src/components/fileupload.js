@@ -89,9 +89,9 @@ class Fileupload extends React.Component {
 						// If file size is larger than expected.
 						if (response.data.error) {
 							if ('LIMIT_FILE_SIZE' === response.data.error.code) {
-								this.ocShowAlert('Max size: 2MB', 'red');
+								this.ocShowAlert('Max size: 4MB', 'red');
 							} else if ('LIMIT_UNEXPECTED_FILE' === response.data.error.code) {
-								this.ocShowAlert('Max 4 images allowed', 'red');
+								this.ocShowAlert('Max 10 images allowed', 'red');
 							} else {
 								// If not the given ile type
 								this.ocShowAlert(response.data.error, 'red');

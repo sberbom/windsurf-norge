@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Map from '../containers/map';
 import "../styles/spot.css";
 import Geocode from "react-geocode";
@@ -7,6 +7,8 @@ import {googleAPI} from '../env';
 import '../styles/spot.css'
 import Jumbo from './jumbo';
 import Fileupload from '../containers/fileupload'
+import Photogallery from './photogallery';
+
 
 class Spot extends React.Component {
     
@@ -41,9 +43,9 @@ class Spot extends React.Component {
     }
 
     render() {
-        console.log(this.props.spot)
         const bgimage = this.props.spot.picture ? this.props.spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
-        const {spot} = this.props;  
+        const {spot} = this.props; 
+    
         return(
             <div className="content spot">
                 <Jumbo 
@@ -52,20 +54,11 @@ class Spot extends React.Component {
                     />
                 <div className="spotContent">
                     <div className={"spotCarouselContainer"}>
-                        <Carousel className={"spotCarousel"}>
-                            <Carousel.Item>
-                                <Map 
-                                    oneSpot={true} 
-                                    spot={this.props.spot} 
-                                    center={{lat: Number(spot.latlng.lat), lng: Number(spot.latlng.lng)}}
-                                    zoom={12}/>
-                            </Carousel.Item>
-                            <Carousel.Item className={"spotCarouselItem"}>
-                                <Jumbo
-                                    background={"https://images.unsplash.com/photo-1518810370118-0fde40f8b0f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80"}
-                                />
-                            </Carousel.Item>
-                        </Carousel>
+                        <Map
+                            oneSpot={true}
+                            spot={this.props.spot}
+                            center={{ lat: Number(spot.latlng.lat), lng: Number(spot.latlng.lng) }}
+                            zoom={12} />
                     </div>
                     <div className={"spotCardContainer"}>
                         <h2>{spot.name}</h2>
@@ -89,6 +82,9 @@ class Spot extends React.Component {
                             Legg til bilder
                         </Button>
                     </div>
+                </div>
+                <div className="gallery">
+                    <Photogallery photos={spot.photos} />
                 </div>
                 {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
             </div>
