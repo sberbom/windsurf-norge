@@ -1,0 +1,43 @@
+.gallery-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5%;
+    justify-content: center;
+    height: 40vh;
+    overflow-y: scroll;
+    border-radius: 5px;
+    background-color: rgba(255,255,255, 0.8);
+}
+
+.column {
+    flex: 33%;
+    max-width: 33%;
+    padding: 0 4px;
+  }
+
+.gallery-container img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+.gallery-container img:hover {
+    cursor: pointer;
+}
+
+.modalImage{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.gallary-modal .modal-dialog {
+    max-width: 80% !important;
+
+}
+
+.gallary-modal .modal-content {
+    border-radius: 20px;
+}
+
+
