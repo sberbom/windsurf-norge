@@ -1,0 +1,31 @@
+/* .fileupload > * > .modal-header{
+    background-color: #343a40!important;
+    color: #fff;
+    border-bottom: 0px solid black;
+}
+
+.fileupload > * > .modal-footer{
+    background-color: #343a40!important;
+    color: #fff;
+    border-top: 0px solid black;
+}
+
+.fileupload > * > .modal-body{
+    background-color: #343a40cc!important;
+    color: #fff;
+    
+}
+
+.fileupload > * > * > .close {
+    color: #fff;
+}
+
+.fileupload > * > * > .close :hover {
+    color: #fff;
+} */
+
+
+
+.uploadcard {
+    margin: 2rem;
+}

@@ -1,18 +1,20 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Button } from 'react-bootstrap';
 import Map from '../containers/map';
 import "../styles/spot.css";
 import Geocode from "react-geocode";
 import {googleAPI} from '../env';
 import '../styles/spot.css'
 import Jumbo from './jumbo';
+import Fileupload from '../containers/fileupload'
 
 class Spot extends React.Component {
     
     constructor(props){
         super(props);
         this.state = {
-            address: "null"
+            address: "null",
+            addPhoto: false,
         }
     }
 
@@ -32,6 +34,10 @@ class Spot extends React.Component {
               console.error(error, "err");
             }
           );
+    }
+    
+    handleClose = () => {
+        this.setState({addPhoto: false})
     }
 
     render() {
@@ -79,8 +85,12 @@ class Spot extends React.Component {
                             <p className={"infoLabel"}>Facebook-side: </p>
                             <p className={"infoField"}>{spot.facebookPage}</p>
                         </div>
+                        <Button onClick={() => this.setState({addPhoto: true})}>
+                            Legg til bilder
+                        </Button>
                     </div>
                 </div>
+                {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
             </div>
         );
     }
