@@ -7,6 +7,7 @@ import {googleAPI} from '../env';
 import '../styles/spot.css'
 import Jumbo from './jumbo';
 import Fileupload from '../containers/fileupload'
+import LogIn from '../containers/logIn';
 import Photogallery from './photogallery';
 
 
@@ -17,6 +18,7 @@ class Spot extends React.Component {
         this.state = {
             address: "null",
             addPhoto: false,
+            login: false,
         }
     }
 
@@ -40,6 +42,15 @@ class Spot extends React.Component {
     
     handleClose = () => {
         this.setState({addPhoto: false})
+    }
+
+    addPhotoButtonClick = () => {
+        if(this.props.user === null){
+            this.setState({login: true})
+        }
+        else{
+            this.setState({addPhoto: true})
+        }
     }
 
     render() {
@@ -78,7 +89,7 @@ class Spot extends React.Component {
                             <p className={"infoLabel"}>Facebook-side: </p>
                             <p className={"infoField"}>{spot.facebookPage}</p>
                         </div>
-                        <Button onClick={() => this.setState({addPhoto: true})}>
+                        <Button onClick={this.addPhotoButtonClick}>
                             Legg til bilder
                         </Button>
                     </div>
@@ -87,6 +98,7 @@ class Spot extends React.Component {
                     <Photogallery photos={spot.photos} />
                 </div>
                 {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
+                {this.state.login && <LogIn handleClose={() => this.setState({login:false})}/>}
             </div>
         );
     }
