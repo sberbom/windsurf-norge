@@ -9,6 +9,7 @@ import Jumbo from './jumbo';
 import Fileupload from '../containers/fileupload'
 import LogIn from '../containers/logIn';
 import Photogallery from './photogallery';
+import Comments from '../containers/comments';
 
 
 class Spot extends React.Component {
@@ -99,6 +100,7 @@ class Spot extends React.Component {
                         <Photogallery photos={spot.photos} />
                     </div>
                 }
+                <Comments comments={this.props.spot.comments} />
                 {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
                 {this.state.login && <LogIn handleClose={() => this.setState({login:false})}/>}
             </div>

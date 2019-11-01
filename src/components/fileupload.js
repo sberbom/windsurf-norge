@@ -125,7 +125,7 @@ class Fileupload extends React.Component {
                 query: { "name": this.props.spot.name },
                 update: {
                     "$push": {
-                        "photos": { url: url, user: this.props.user }
+                        "photos": { url: url, user: this.props.user.username }
                     }
                 },
                 options: { "upsert": false }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from 'react-bootstrap';
+import Comments from '../containers/comments';
 import '../styles/photogallery.css'
 
 class Photogallery extends React.Component {
@@ -55,6 +56,7 @@ class Photogallery extends React.Component {
                 </div>
                 <Modal centered animation={false} className={"gallary-modal"}show={this.state.activePhoto !== ""} onHide={this.handleClose}>
                     <img className="modalImage" src={this.state.activePhoto} alt={"img"}/>
+                    <Comments comments={[{user:"sberb", comment:"Kult"},{user:"jonathan", comment:"Denne spotten liker jeg godt!"}]} />
                 </Modal>
             </div>
         );
