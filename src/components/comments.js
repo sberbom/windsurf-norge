@@ -29,7 +29,7 @@ class Comments extends React.Component {
                     query: { "name": this.props.spot.name },
                     update: {
                         "$push": {
-                            "comments": { user: this.props.user.username, comment: this.state.newComment }
+                            "comments": { user: this.props.user.username, comment: this.state.newComment, date: new Date() }
                         }
                     },
                     options: { "upsert": false }
@@ -41,15 +41,22 @@ class Comments extends React.Component {
                         console.log(res);
                     }
                 })
+            if(this.props.comments){
+                this.props.comments.push({ user: this.props.user.username, comment: this.state.newComment, date: new Date() })
+            }
             this.setState({newComment: ""})
         }
     }
 
     
     render() {
-        console.log(this.state)
+        console.log(this.props.comments)
+        
         let comments = [];
         if(this.props.comments){
+            this.props.comments.sort(function(a,b){
+                return new Date(b.date) - new Date(a.date);
+              });
             this.props.comments.forEach((comment, index) => {
                 comments.push(
                     <div key={index} className="commentContainer">
@@ -68,6 +75,7 @@ class Comments extends React.Component {
                             className="newComment" 
                             rows="2" 
                             type="text" 
+                            value = {this.state.newComment}
                             placeholder="Ny kommentar"
                             onChange={this.onCommentChange} />
                         <Button onClick={this.onSubmit}>

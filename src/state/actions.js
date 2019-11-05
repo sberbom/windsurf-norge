@@ -24,6 +24,20 @@ export const requestSpots = () => (dispatch) => {
         .catch(error => dispatch({type: REQUEST_SPOTS_FAILED, payload: error}));
 }
 
+export const requestOneSpot = (spotName) => (dispatch) => {
+    dispatch({type:REQUEST_SPOTS_PENDING})
+    fetch('http://localhost:3300/oneSpot', {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: spotName 
+        })
+    })
+        .then(res => res.json())
+        .then(data => dispatch({type: REQUEST_SPOTS_SUCCESS, payload: data}))
+        .catch(error => dispatch({type: REQUEST_SPOTS_FAILED, payload: error}));
+} 
+
 export const getAddress = (lat, lng) => (dispatch) => {
     Geocode.setApiKey(googleAPI);
     Geocode.enableDebug();

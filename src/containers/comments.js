@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import Comments from '../components/comments';
+import {requestSpots} from '../state/actions';
+
 
 function mapStateToProps(state) {
     const props = {}
@@ -8,4 +10,10 @@ function mapStateToProps(state) {
     return props;
 }
 
-export default connect(mapStateToProps, null)(Comments);
+function mapDispatchToProps(dispatch) {
+    return {
+      onRequestSpots: () => dispatch(requestSpots()),
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);
