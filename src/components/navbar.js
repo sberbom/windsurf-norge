@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import LogIn from '../containers/logIn';
 import Register from '../containers/register';
+import { Link, withRouter } from 'react-router-dom'
 
 class SBNavbar extends React.Component  {
     constructor(props) {
@@ -15,26 +16,10 @@ class SBNavbar extends React.Component  {
             showRegister: false
         };
     }
-    
-    // componentDidMount() {
-    //     window.addEventListener("scroll", this.handleScroll);
-    // }
 
-    // componentWillUnmount() {
-    //     window.removeEventListener("scroll", this.handleScroll);
-    // }
-
-    handleScroll = () => {
-        const { prevScrollpos } = this.state;
-    
-        const currentScrollPos = window.pageYOffset;
-        const visible = prevScrollpos > currentScrollPos;
-    
-        this.setState({
-            prevScrollpos: currentScrollPos,
-            visible
-        });
-    };
+    redirect = (url) => {
+        this.props.history.push(url);
+    }
 
     onLoginClick = () => {
         this.setState({showLogin: !this.state.showLogin})
@@ -43,13 +28,12 @@ class SBNavbar extends React.Component  {
     onRegisterClick = () => {
         this.setState({showRegister: !this.state.showRegister})
     }
-    
 
     render() {
         return(
             <div>
                 {this.state.visible && <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top topnav">
-                    <Navbar.Brand className="pointer" onClick={() => this.props.setRoute("home")}>
+                    <Navbar.Brand className="pointer" onClick={() => this.redirect("/home")}>
                         <img
                             src="https://image.flaticon.com/icons/svg/80/80839.svg"
                             width="30"
@@ -62,9 +46,9 @@ class SBNavbar extends React.Component  {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link onClick={() => this.props.setRoute("viewSpots")}>Alle spots</Nav.Link>
-                            <Nav.Link onClick={() => this.props.setRoute("mapView")}>Kart</Nav.Link>
-                            <Nav.Link onClick={() => this.props.setRoute("addSpot")}>Legg til spot</Nav.Link>
+                            <Link to="/viewSpots">Alle spots</Link>
+                            <Link to="/mapView">Kart</Link>
+                            <Link to="/addSpot">Legg til spot</Link>
                         </Nav>
                         {this.props.user === null ? 
                         <Nav>
@@ -86,4 +70,4 @@ class SBNavbar extends React.Component  {
     }
 }
 
-export default SBNavbar;
+export default withRouter(SBNavbar);

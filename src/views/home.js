@@ -59,7 +59,7 @@ class Home extends React.Component {
                 <Tabbar activeKey={this.state.tab} scrollTo={this.scrollto}/>
                 <div className="mainContent">
                     <Title title={"Populære spots"}/>
-                    <SpotList number={8}  getHeight={height => this.getSpotHeigth = height}/>
+                    <SpotList number={6}  getHeight={height => this.getSpotHeigth = height}/>
                     <Title title={"Kart"}/>
                     <Map/>
                 </div>

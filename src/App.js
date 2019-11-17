@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
 import SBNavbar from './containers/navbar';
-import Home from './views/home'
 import Footer from './components/footer';
+import Home from './views/home'
 import ViewSpots from './containers/viewSpots';
 import MapView from './views/mapView';
 import AddSpot from './containers/addSpot';
 import SpotView from './views/spotView'
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom'
 
 function mapStateToProps(state) {
   const props = {}
-  props.route = state.changeRoute.currentRoute;
   props.activeSpot = state.activeSpot.activeSpot;
   return props;
 }
@@ -19,15 +19,29 @@ function mapStateToProps(state) {
 class App extends React.Component {
 
   render(){
-    const route = this.props.route;
     return (
       <div className="App">
-        <SBNavbar route={this.route}/>
-        {route === "home" && <Home/>}
-        {route === 'mapView' && <MapView/>}
-        {route === "viewSpots" && <ViewSpots/>}
-        {route === 'addSpot' && <AddSpot/>}
-        {route === 'spot' && <SpotView/>}
+        <SBNavbar/>
+        <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/mapView">
+            <MapView />
+          </Route>
+          <Route path="/viewSpots">
+            <ViewSpots />
+          </Route>
+          <Route path="/addSpot">
+            <AddSpot />
+          </Route>
+          <Route path="/spot">
+            <SpotView />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
         <Footer/>
       </div>
     );

@@ -5,14 +5,11 @@ import {
     GET_ADDRESS, 
     GET_LNG,
     GET_LAT,
-    CHANGE_ROUTE,
     CHANGE_ACTIVE_SPOT,
     CHANGE_USER,
 } from './constants';
 import Geocode from "react-geocode";
 import {googleAPI} from '../env';
-
-export const setRoute = (text) => ({type:CHANGE_ROUTE, paylode:text})
 
 export const setActiveSpot = (spot) => ({type:CHANGE_ACTIVE_SPOT, paylode:spot})
 

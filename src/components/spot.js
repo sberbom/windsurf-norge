@@ -20,11 +20,38 @@ class Spot extends React.Component {
             address: "null",
             addPhoto: false,
             login: false,
+            spot: null,
+            loading: true,
         }
     }
 
     componentDidMount() {
-        this.getAddress(this.props.spot.latlng.lat, this.props.spot.latlng.lng);
+        if(this.props.spot){
+            this.getAddress(this.props.spot.latlng.lat, this.props.spot.latlng.lng);
+        }
+        if(this.props.spot === null) {
+            var spotName = this.getString(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+            fetch('http://localhost:3300/oneSpot', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "name": spotName
+                })
+            })
+                .then(response => response.json())
+                .then(res => {
+                    if (res) {
+                        console.log(res)
+                        this.setState({spot: res, loading: false});
+                        this.getAddress(res.latlng.lat, res.latlng.lng);
+                    }
+                })
+        }
+    }
+
+    getString(s){
+        return s.replace("%20", " ").replace("%C3%A5", "å").replace("%C3%85", "Å").replace("%C3%86", "Æ").replace("%C3%98", "Ø")
+        .replace("%C3%A6", "æ").replace("%C3%B8", "ø");
     }
 
     getAddress = (lat, lng) => {
@@ -55,9 +82,13 @@ class Spot extends React.Component {
     }
 
     render() {
-        const bgimage = this.props.spot.picture ? this.props.spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
-        const {spot} = this.props; 
-    
+        if(this.state.loading === true && this.props.spot === null){
+            return(<p>Loading</p>)
+        }
+
+        const spot = this.props.spot === null ? this.state.spot : this.props.spot; 
+        const bgimage = spot.picture ? spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
+        
         return(
             <div className="content spot">
                 <Jumbo 
@@ -68,7 +99,7 @@ class Spot extends React.Component {
                     <div className={"spotCarouselContainer"}>
                         <Map
                             oneSpot={true}
-                            spot={this.props.spot}
+                            spot={spot}
                             center={{ lat: Number(spot.latlng.lat), lng: Number(spot.latlng.lng) }}
                             zoom={12} />
                     </div>
@@ -95,12 +126,12 @@ class Spot extends React.Component {
                         </Button>
                     </div>
                 </div>
-                {this.props.spot.photos && 
+                {spot.photos && 
                     <div className="gallery">
                         <Photogallery photos={spot.photos} />
                     </div>
                 }
-                <Comments comments={this.props.spot.comments} />
+                <Comments comments={spot.comments} />
                 {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
                 {this.state.login && <LogIn handleClose={() => this.setState({login:false})}/>}
             </div>

@@ -8,6 +8,9 @@ class SpotList extends React.Component {
         if(this.props.getHeight){
             this.props.getHeight(this.getHeight);
         }
+        if(this.props.spots.length === 0){
+            this.props.onRequestSpots();
+        }
      }
 
     getHeight = () => {

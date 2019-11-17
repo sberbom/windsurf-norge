@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom'
 import '../styles/card.css'
 
 
@@ -7,7 +8,7 @@ class SpotCard extends React.Component {
 
     onCardClick = () => {
       this.props.setActiveSpot(this.props.spot);
-      this.props.setRoute("spot");
+      this.props.history.push("/spot/"+this.props.spot.name);
     }
 
     render(){
@@ -26,4 +27,4 @@ class SpotCard extends React.Component {
     }
 }
 
-export default SpotCard;
+export default withRouter(SpotCard);

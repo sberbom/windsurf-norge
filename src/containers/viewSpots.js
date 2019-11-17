@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
 import ViewSpots from '../views/viewSpots';
-import {setRoute} from '../state/actions';
+import { requestSpots} from '../state/actions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setRoute: (route) => dispatch(setRoute(route)),
+        onRequestSpots: () => dispatch(requestSpots())
     }
   }
-
 
   export default connect(null, mapDispatchToProps)(ViewSpots);
 

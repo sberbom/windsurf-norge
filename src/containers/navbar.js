@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import Navbar from '../components/navbar';
-import {setRoute, changeUser} from '../state/actions';
+import { changeUser} from '../state/actions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setRoute: (route) => dispatch(setRoute(route)),
         changeUser: (user) => dispatch(changeUser(user)),
     }
   }

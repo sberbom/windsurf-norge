@@ -3,6 +3,7 @@ import Jumbo from '../components/jumbo';
 import Map from '../containers/map';
 import AddSpotForm from '../containers/addSpotForm';
 import LogIn from '../containers/logIn'
+import { withRouter } from 'react-router-dom'
 import '../styles/addSpot.css'
 
 class AddSpot extends React.Component {
@@ -16,7 +17,7 @@ class AddSpot extends React.Component {
     }
 
     onLoginClick = () => {
-        this.props.setRoute("home")
+        this.props.history.push("/home");
     }
 
     render(){
@@ -40,4 +41,4 @@ class AddSpot extends React.Component {
     }
 }
 
-export default AddSpot;
+export default withRouter(AddSpot);
