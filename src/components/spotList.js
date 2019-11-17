@@ -45,7 +45,6 @@ class SpotList extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         let filteredSpots = this.getFilteredSpots();
         filteredSpots = this.getSortetSpots(filteredSpots, this.props.sortBy);
 
