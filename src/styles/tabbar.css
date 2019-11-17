@@ -13,7 +13,7 @@
 .tabbar > a {
     color: rgba(0,0,0,0.5);
     padding: 14px 1rem 16px 1rem;
-    font-size: 17px;
+    font-size: 1rem;
 }
 
 .nav-item:hover {
