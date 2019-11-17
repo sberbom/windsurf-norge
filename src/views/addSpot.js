@@ -15,6 +15,10 @@ class AddSpot extends React.Component {
             position: null
         }
     }
+    
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
 
     onLoginClick = () => {
         this.props.history.push("/home");

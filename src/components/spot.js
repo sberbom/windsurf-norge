@@ -47,6 +47,7 @@ class Spot extends React.Component {
                     }
                 })
         }
+        window.scrollTo(0,0);
     }
 
     getString(s){

@@ -14,6 +14,10 @@ class ViewSpots extends React.Component {
         };
     }
 
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+
     onSearchfilterChange = (filter) => {
         filter.target.value === "" ? this.setState({searchFilter: null}) : this.setState({searchFilter: filter.target.value});
     }
