@@ -34,7 +34,6 @@ class ViewSpots extends React.Component {
         return(
             <div className="content">
                 <div className="mainContent">
-                    {/* <Title title={"Spots"}/> */}
                     <Jumbo 
                         title={"Spot"} 
                         undertitle={"På denne siden ser du alle spotene i vår database. Ser du ikke din favorit spot? Legg den til!"}

@@ -18,9 +18,36 @@ class SpotList extends React.Component {
         return height;
     }
 
+    getFilteredSpots = () => {
+        const {searchFilter, spots} = this.props
+        if(searchFilter !== null && searchFilter !== undefined) {
+            const filteredSpots = spots.filter(spot => { 
+                return spot.name.toLowerCase().includes(searchFilter.toLowerCase());
+            })
+            return filteredSpots;
+        }
+        else { 
+            return spots
+        }
+    }
+
+    getSortetSpots = (spots, type) => {
+        switch(type){
+            case "mostPopular":
+                return spots.sort((a,b) => (a.views<b.views) ? 1 : -1);
+            case "mostRecent":
+                return spots.sort((a,b) => (new Date(a.date)>new Date(b.date)) ? 1 : -1);
+            case "alfabetic":
+                return spots.sort((a, b) => (a.name>b.name) ? 1 : -1);
+            default:
+                return spots.sort((a, b) => (a.name>b.name) ? 1 : -1);
+        }
+    }
+
     render() {
+        console.log(this.props)
         let filteredSpots = this.getFilteredSpots();
-        filteredSpots = this.getSortetSpots(filteredSpots);
+        filteredSpots = this.getSortetSpots(filteredSpots, this.props.sortBy);
 
         const {number} = this.props;
 
@@ -38,23 +65,6 @@ class SpotList extends React.Component {
                 {cards}
             </div>
         );
-    }
-
-    getFilteredSpots = () => {
-        const {searchFilter, spots} = this.props
-        if(searchFilter !== null && searchFilter !== undefined) {
-            const filteredSpots = spots.filter(spot => { 
-                return spot.name.toLowerCase().includes(searchFilter.toLowerCase());
-            })
-            return filteredSpots;
-        }
-        else { 
-            return spots
-        }
-    }
-
-    getSortetSpots = (spots) => {
-        return spots.sort((a, b) => (a.name>b.name) ? 1 : -1);
     }
 }
 

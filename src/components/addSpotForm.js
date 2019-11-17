@@ -36,7 +36,8 @@ class AddSpotForm extends React.Component {
                     description: this.state.description,
                     facebookPage: this.state.facebookPage,
                     apporach: this.state.apporach,
-                    latlng: {lat: this.props.lat, lng: this.props.lng}
+                    latlng: {lat: this.props.lat, lng: this.props.lng},
+                    date: new Date()
                 })
             })
             .then(response => response.json())

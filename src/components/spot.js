@@ -48,6 +48,29 @@ class Spot extends React.Component {
                 })
         }
         window.scrollTo(0,0);
+        this.props.spot ? this.updateDB(this.props.spot) : this.updateDB(this.state.spot)
+    }
+
+    updateDB = (spot) => {
+        fetch('http://localhost:3300/spot/update', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                query: { "name": spot.name },
+                update: {
+                    "$set": {
+                        "views": spot.views+1
+                    }
+                },
+                options: { "upsert": false }
+            })
+        })
+            .then(response => response.json())
+            .then(res => {
+                if (res) {
+                    console.log(res);
+                }
+            })
     }
 
     getString(s){

@@ -17,7 +17,7 @@ const Searchbar = (props) => {
                 />
             </InputGroup>
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle id="dropdown-basic">
                     Sorter etter
                 </Dropdown.Toggle>
 
