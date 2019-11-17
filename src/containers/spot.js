@@ -1,5 +1,6 @@
 import Spot from '../components/spot';
 import { connect } from 'react-redux';
+import {setActiveSpot} from '../state/actions';
     
 function mapStateToProps(state) {
     const props = {}
@@ -8,5 +9,11 @@ function mapStateToProps(state) {
     return props;
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+      setActiveSpot: (spot)  => dispatch(setActiveSpot(spot)),
+    }
+  }
 
-export default connect(mapStateToProps, null)(Spot);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Spot);

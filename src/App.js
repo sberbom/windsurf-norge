@@ -9,6 +9,7 @@ import AddSpot from './containers/addSpot';
 import SpotView from './views/spotView'
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
+import EditSpot from './containers/editSpot';
 
 function mapStateToProps(state) {
   const props = {}
@@ -37,6 +38,9 @@ class App extends React.Component {
           </Route>
           <Route path="/spot">
             <SpotView />
+          </Route>
+          <Route path="/editSpot">
+            <EditSpot/>
           </Route>
           <Route path="/">
             <Home />

@@ -6,7 +6,8 @@ import {
     GET_LNG,
     GET_LAT,
     CHANGE_ACTIVE_SPOT,
-    CHANGE_USER
+    CHANGE_USER,
+    UPDATE_SPOT_LOCAL
 } from './constants';
 
 const initialStateSpots = {
@@ -23,6 +24,20 @@ export const requestSpots= (state=initialStateSpots, action={}) => {
             return Object.assign({}, state, {spots:action.payload, isPending:false});
         case REQUEST_SPOTS_FAILED:
             return Object.assign({}, state, {error: action.payload, isPending: false});
+        case UPDATE_SPOT_LOCAL:
+            const spots = state.spots.map((item, index) => {
+                if(item.name === action.payload.name){
+                    return{
+                        ...item,
+                        description: action.payload.description,
+                        appraoch: action.payload.appraoch,
+                        facebookpage : action.payload.facebookpage
+                    }
+                }
+                return item
+            })
+            console.log(spots)
+            return Object.assign({}, state, {spots: spots});
         default:
             return state;
     }

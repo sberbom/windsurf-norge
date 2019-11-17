@@ -10,6 +10,8 @@ import Fileupload from '../containers/fileupload'
 import LogIn from '../containers/logIn';
 import Photogallery from './photogallery';
 import Comments from '../containers/comments';
+import { withRouter } from 'react-router-dom'
+
 
 
 class Spot extends React.Component {
@@ -26,29 +28,24 @@ class Spot extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.spot){
-            this.getAddress(this.props.spot.latlng.lat, this.props.spot.latlng.lng);
-        }
-        if(this.props.spot === null) {
-            var spotName = this.getString(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
-            fetch('http://localhost:3300/oneSpot', {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    "name": spotName
-                })
+        var spotName = this.getString(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+        fetch('http://localhost:3300/oneSpot', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "name": spotName
             })
-                .then(response => response.json())
-                .then(res => {
-                    if (res) {
-                        console.log(res)
-                        this.setState({spot: res, loading: false});
-                        this.getAddress(res.latlng.lat, res.latlng.lng);
-                    }
-                })
-        }
+        })
+            .then(response => response.json())
+            .then(res => {
+                if (res) {
+                    this.setState({spot: res, loading: false});
+                    this.getAddress(res.latlng.lat, res.latlng.lng);
+                    this.updateDB(res)
+                    this.props.setActiveSpot(res);
+                }
+            })
         window.scrollTo(0,0);
-        this.props.spot ? this.updateDB(this.props.spot) : this.updateDB(this.state.spot)
     }
 
     updateDB = (spot) => {
@@ -105,12 +102,16 @@ class Spot extends React.Component {
         }
     }
 
+    editSpotClick = () => {
+        this.props.history.push("/editSpot");
+    }
+
     render() {
-        if(this.state.loading === true && this.props.spot === null){
+        if(this.state.loading === true){
             return(<p>Loading</p>)
         }
 
-        const spot = this.props.spot === null ? this.state.spot : this.props.spot; 
+        const spot = this.state.spot
         const bgimage = spot.picture ? spot.picture : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
         
         return(
@@ -143,10 +144,13 @@ class Spot extends React.Component {
                         </div>
                         <div>
                             <p className={"infoLabel"}>Facebook-side: </p>
-                            <p className={"infoField"}>{spot.facebookPage}</p>
+                            <p className={"infoField"}><a  href={spot.facebookPage} target="_blank" rel="noopener noreferrer">{spot.facebookPage}</a></p>
                         </div>
-                        <Button onClick={this.addPhotoButtonClick}>
+                        <Button className={"spotButton"} onClick={this.addPhotoButtonClick}>
                             Legg til bilder
+                        </Button>
+                        <Button className={"spotButton"} onClick={this.editSpotClick}>
+                            Endre Spot
                         </Button>
                     </div>
                 </div>
@@ -157,11 +161,11 @@ class Spot extends React.Component {
                 }
                 <Comments comments={spot.comments} />
                 {this.state.addPhoto && <Fileupload handleClose={this.handleClose}/>}
-                {this.state.login && <LogIn handleClose={() => this.setState({login:false})}/>}
+                {this.state.login && <LogIn handleClose={() => this.setState({login: false})}/>}
             </div>
         );
     }
 
 }
 
-export default Spot;
+export default withRouter(Spot);

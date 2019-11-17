@@ -1,5 +1,7 @@
 import React from 'react';
 import {Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
+import { withRouter } from 'react-router-dom'
+
 
 class LogIn extends React.Component {
 
@@ -81,4 +83,4 @@ class LogIn extends React.Component {
     }
 }
 
-export default LogIn;
+export default withRouter(LogIn);

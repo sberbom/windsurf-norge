@@ -37,7 +37,8 @@ class AddSpotForm extends React.Component {
                     facebookPage: this.state.facebookPage,
                     apporach: this.state.apporach,
                     latlng: {lat: this.props.lat, lng: this.props.lng},
-                    date: new Date()
+                    date: new Date(),
+                    user: this.props.user
                 })
             })
             .then(response => response.json())
@@ -104,10 +105,12 @@ class AddSpotForm extends React.Component {
                     <Form.Label>Beskrivelse</Form.Label>
                     <Form.Control as="textarea" rows="4" onChange={this.descriptionChange}/>
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput6">
-                    <Form.Label>Bruker</Form.Label>
-                    <Form.Control readOnly defaultValue="Bruker" />
-                </Form.Group>
+                {this.props.user &&
+                    <Form.Group controlId="exampleForm.ControlInput6">
+                        <Form.Label>Bruker</Form.Label>
+                        <Form.Control readOnly defaultValue={this.props.user.username} />
+                    </Form.Group>
+                }
                 <Button variant="primary" onClick={this.onSubmit}> {/*add type="submit"*/}
                     Lagre
                 </Button>

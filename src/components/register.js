@@ -1,5 +1,7 @@
 import React from 'react';
 import {Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
+import { withRouter } from 'react-router-dom'
+
 
 class Register extends React.Component {
 
@@ -94,4 +96,4 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+export default withRouter(Register);
