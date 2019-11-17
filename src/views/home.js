@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/header';
 import SpotList from '../containers/spotList'
 import Map from '../containers/map';
+import Photogallery from '../components/photogallery';
 import Title from '../components/title';
 import Tabbar from '../components/tabbar';
 
@@ -30,6 +31,7 @@ class Home extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.listenScrollEvent);
         window.scrollTo(0,0);
+        this.props.getPhotos();
     }
 
     componentWillUnmount() {
@@ -61,6 +63,8 @@ class Home extends React.Component {
                 <div className="mainContent">
                     <Title title={"Populære spots"}/>
                     <SpotList number={6} sortBy={"mostPopular"}  getHeight={height => this.getSpotHeigth = height}/>
+                    <Title title={"Bilder"}/>
+                    <Photogallery photos={this.props.photos}/>
                     <Title title={"Kart"}/>
                     <Map/>
                 </div>

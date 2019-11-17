@@ -7,7 +7,10 @@ import {
     GET_LAT,
     CHANGE_ACTIVE_SPOT,
     CHANGE_USER,
-    UPDATE_SPOT_LOCAL
+    UPDATE_SPOT_LOCAL,
+    REQUEST_PHOTOS_FAILED,
+    REQUEST_PHOTOS_PENDING,
+    REQUEST_PHOTOS_SUCCESS
 } from './constants';
 
 const initialStateSpots = {
@@ -38,6 +41,25 @@ export const requestSpots= (state=initialStateSpots, action={}) => {
             })
             console.log(spots)
             return Object.assign({}, state, {spots: spots});
+        default:
+            return state;
+    }
+}
+
+const initalPhotos= {
+    photos: [],
+    isPending: false,
+    error: ""
+}
+
+export const getPhotos = (state= initalPhotos, action={}) => {
+    switch(action.type){
+        case REQUEST_PHOTOS_PENDING:
+            return Object.assign({}, state, { isPending: true});
+        case REQUEST_PHOTOS_SUCCESS:
+            return Object.assign({}, state, {photos:action.payload, isPending:false});
+        case REQUEST_PHOTOS_FAILED:
+            return Object.assign({}, state, {error: action.payload, isPending: false});
         default:
             return state;
     }

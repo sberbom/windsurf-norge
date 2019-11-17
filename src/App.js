@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import SBNavbar from './containers/navbar';
 import Footer from './components/footer';
-import Home from './views/home'
+import Home from './containers/home'
 import ViewSpots from './containers/viewSpots';
 import MapView from './views/mapView';
 import AddSpot from './containers/addSpot';

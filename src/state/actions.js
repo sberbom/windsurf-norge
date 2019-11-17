@@ -7,7 +7,10 @@ import {
     GET_LAT,
     CHANGE_ACTIVE_SPOT,
     CHANGE_USER,
-    UPDATE_SPOT_LOCAL
+    UPDATE_SPOT_LOCAL,
+    REQUEST_PHOTOS_SUCCESS,
+    REQUEST_PHOTOS_PENDING,
+    REQUEST_PHOTOS_FAILED
 } from './constants';
 import Geocode from "react-geocode";
 import {googleAPI} from '../env';
@@ -15,12 +18,19 @@ import {googleAPI} from '../env';
 export const setActiveSpot = (spot) => ({type:CHANGE_ACTIVE_SPOT, paylode:spot})
 
 export const requestSpots = () => (dispatch) => {
-    console.log("called")
     dispatch({type:REQUEST_SPOTS_PENDING})
     fetch('http://localhost:3300/spots')
         .then(res => res.json())
         .then(data => dispatch({type: REQUEST_SPOTS_SUCCESS, payload: data}))
         .catch(error => dispatch({type: REQUEST_SPOTS_FAILED, payload: error}));
+}
+
+export const getPhotos = () => (dispatch) => {
+    dispatch({type: REQUEST_PHOTOS_PENDING})
+    fetch("http://localhost:3300/photos")
+        .then(res => res.json())
+        .then(data => dispatch({type: REQUEST_PHOTOS_SUCCESS, payload: data}))
+        .catch(error => dispatch({type: REQUEST_PHOTOS_FAILED, payload: error}));
 }
 
 export const updateSpotLocal = (spot) => (dispatch) => {
