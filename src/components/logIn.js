@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
+import Register from '../containers/register'
 import { withRouter } from 'react-router-dom'
 
 
@@ -12,6 +13,7 @@ class LogIn extends React.Component {
         this.state = {
             error: false,
             errorMessage: null,
+            showRegister: false,
         }
     }
 
@@ -34,6 +36,10 @@ class LogIn extends React.Component {
                 this.setState({error:true, errorMessage: user});
             }
         })
+    }
+
+    showRegister = () =>{
+        this.setState({showRegister: true})
     }
 
     render(){
@@ -73,11 +79,15 @@ class LogIn extends React.Component {
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Lukk
                     </Button>
+                    <Button variant="primary" onClick={this.showRegister}>
+                        Register
+                    </Button>
                     <Button variant="primary" onClick={this.onLogIn}>
                         Logg inn
                     </Button>
                     </Modal.Footer>
                 </Modal>
+                {this.state.showRegister && <Register handleClose={() => this.setState({showRegister: false})}/>}
             </div>
         );
     }
