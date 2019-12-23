@@ -29,6 +29,13 @@ class SBNavbar extends React.Component  {
         this.setState({showRegister: !this.state.showRegister})
     }
 
+    logOut = () => {
+        this.props.changeUser(null)
+        this.props.setToken(null)
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+    }
+
     render() {
         return(
             <div>
@@ -58,7 +65,7 @@ class SBNavbar extends React.Component  {
                         :
                         <Nav>
                             <Nav.Link>{this.props.user.username}</Nav.Link>
-                            <Nav.Link onClick={() => this.props.changeUser(null)}>Logg ut</Nav.Link>
+                            <Nav.Link onClick={this.logOut}>Logg ut</Nav.Link>
                         </Nav>
                     }
                     </Navbar.Collapse>

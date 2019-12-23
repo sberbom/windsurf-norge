@@ -1,7 +1,8 @@
 import React from 'react';
-import {Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
+import {Modal, Button } from 'react-bootstrap';
 import Register from '../containers/register'
 import { withRouter } from 'react-router-dom'
+import GoogleLogin from 'react-google-login';
 
 
 class LogIn extends React.Component {
@@ -17,30 +18,16 @@ class LogIn extends React.Component {
         }
     }
 
-    onLogIn = () => {
-        fetch('http://localhost:3300/login', {
-            method: 'post',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({
-                username: this.username.current.value,
-                password: this.password.current.value
-            })
-        })
-        .then(response => response.json())
-        .then(user => {
-            if(user.username===this.username.current.value){
-                this.props.changeUser(user);
-                this.props.handleClose();
-            }
-            else{
-                this.setState({error:true, errorMessage: user});
-            }
-        })
-    }
-
-    showRegister = () =>{
-        this.setState({showRegister: true})
-    }
+    responseGoogle = (response) => {
+        if (!response.error){
+            localStorage.setItem('token', response.tokenId)
+            console.log(JSON.stringify(response.profileObj))
+            localStorage.setItem('user', JSON.stringify(response.profileObj))
+            this.props.changeUser(response.profileObj);
+            this.props.setToken(response.tokenId);
+            this.props.handleClose();
+        }
+      }
 
     render(){
         return(
@@ -50,40 +37,17 @@ class LogIn extends React.Component {
                         <Modal.Title>Logg inn</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {this.state.error && <p>{this.state.errorMessage}</p>}
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Brukernavn</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                            placeholder="E-post"
-                            aria-label="Brukernavn"
-                            aria-describedby="basic-addon1"
-                            ref={this.username}
-                            />
-                        </InputGroup>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Passord</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                            placeholder="Passord"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            type="password"
-                            ref={this.password}
-                            />
-                        </InputGroup>
+                        <GoogleLogin
+                            clientId="273104178954-04iu0j1nc7tn9f896nojlsrnre3bpedi.apps.googleusercontent.com"
+                            buttonText="Login"
+                            onSuccess={this.responseGoogle}
+                            onFailure={this.responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />
                     </Modal.Body>
                     <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Lukk
-                    </Button>
-                    <Button variant="primary" onClick={this.showRegister}>
-                        Register
-                    </Button>
-                    <Button variant="primary" onClick={this.onLogIn}>
-                        Logg inn
                     </Button>
                     </Modal.Footer>
                 </Modal>

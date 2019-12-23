@@ -7,7 +7,8 @@ import {
     GET_LAT,
     CHANGE_ACTIVE_SPOT,
     CHANGE_USER,
-    UPDATE_SPOT_LOCAL
+    UPDATE_SPOT_LOCAL,
+    SET_TOKEN
 } from './constants';
 import Geocode from "react-geocode";
 import {googleAPI} from '../env';
@@ -58,3 +59,5 @@ export const getAddress = (lat, lng) => (dispatch) => {
 }
 
 export const changeUser = (user) => ({type:CHANGE_USER, payload:user})
+
+export const setToken = (token) => ({type:SET_TOKEN, payload: token})
