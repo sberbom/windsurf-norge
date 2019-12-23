@@ -8,6 +8,7 @@ function mapStateToProps(state) {
     props.lat = state.getAddress.lat;
     props.lng = state.getAddress.lng;
     props.spots = state.requestSpots.spots;
+    props.token = state.setToken.token;
     return props;
 }
 

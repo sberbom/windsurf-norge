@@ -7,7 +7,8 @@ import {
     GET_LAT,
     CHANGE_ACTIVE_SPOT,
     CHANGE_USER,
-    UPDATE_SPOT_LOCAL
+    UPDATE_SPOT_LOCAL,
+    SET_TOKEN
 } from './constants';
 
 const initialStateSpots = {
@@ -83,6 +84,19 @@ export const changeUser = (state = intialUser, action={}) => {
     switch(action.type){
         case CHANGE_USER:
             return Object.assign({}, state, {user: action.payload})
+        default:
+            return state;
+    }
+}
+
+const initalToken = {
+    token: null
+}
+
+export const setToken = (state = initalToken, action = {}) => {
+    switch(action.type) {
+        case SET_TOKEN:
+            return Object.assign({}, state, {token: action.payload})
         default:
             return state;
     }

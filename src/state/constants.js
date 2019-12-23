@@ -10,3 +10,5 @@ export const GET_LAT = "GET_LAT"
 export const CHANGE_USER = 'CHANGE_USER'
 
 export const UPDATE_SPOT_LOCAL = "UPDATE_SPOT_LOCAL"
+
+export const SET_TOKEN = 'SET_TOKEN'

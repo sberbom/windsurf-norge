@@ -10,6 +10,7 @@ import SpotView from './views/spotView'
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
 import EditSpot from './containers/editSpot';
+import {changeUser, setToken} from './state/actions';
 
 function mapStateToProps(state) {
   const props = {}
@@ -17,7 +18,21 @@ function mapStateToProps(state) {
   return props;
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+      changeUser: (user) => dispatch(changeUser(user)),
+      setToken: (token) => dispatch(setToken(token))
+  }
+}
+
 class App extends React.Component {
+
+  componentDidMount() {
+    if( localStorage.getItem('user') && localStorage.getItem('token')){
+      this.props.changeUser(JSON.parse(localStorage.getItem('user')));
+      this.props.setToken(localStorage.getItem('token'))
+    }
+  }
 
   render(){
     return (
@@ -52,4 +67,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
