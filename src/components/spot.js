@@ -29,6 +29,7 @@ class Spot extends React.Component {
 
     componentDidMount() {
         var spotName = this.getString(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+        console.log(spotName);
         fetch('http://localhost:3300/oneSpot', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -49,7 +50,7 @@ class Spot extends React.Component {
     }
 
     updateDB = (spot) => {
-        fetch('http://localhost:3300/spot/update', {
+        fetch('http://localhost:3300/spot/addView', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

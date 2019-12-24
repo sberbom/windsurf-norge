@@ -109,7 +109,7 @@ class AddSpotForm extends React.Component {
                 {this.props.user &&
                     <Form.Group controlId="exampleForm.ControlInput6">
                         <Form.Label>Bruker</Form.Label>
-                        <Form.Control readOnly defaultValue={this.props.user.username} />
+                        <Form.Control readOnly defaultValue={this.props.user.name} />
                     </Form.Group>
                 }
                 <Button variant="primary" onClick={this.onSubmit}> {/*add type="submit"*/}

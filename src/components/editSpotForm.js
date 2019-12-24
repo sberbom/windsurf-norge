@@ -57,6 +57,7 @@ class EditSpotForm extends React.Component {
                             description: this.state.description,
                             facebookPage: this.state.facebookPage,
                             approach: this.state.approach,
+                            token: this.props.token
                         }
                     }
                 })

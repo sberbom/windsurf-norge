@@ -9,4 +9,10 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 
-export default connect(null, mapDispatchToProps)(EditSpotForm);
+  function mapStateToProps(state) {
+    const props = {}
+    props.token = state.setToken.token;
+    return props;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditSpotForm);

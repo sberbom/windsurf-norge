@@ -58,7 +58,7 @@ export const activeSpot = (state = intialActiveSpot, action={}) => {
 }
 
 const intialAddress = {
-    address: "--Undefied--",
+    address: "--Ukjent--",
     lat: "",
     lng: "",
 }
